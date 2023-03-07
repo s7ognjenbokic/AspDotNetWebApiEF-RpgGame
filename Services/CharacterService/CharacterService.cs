@@ -65,9 +65,11 @@ namespace udemy_dotnet_webapi.Services.CharacterService
             var serviceResponse = new ServiceResponse<GetCharacterResponseDto>();
 
             try {
-                var character = characters.FirstOrDefault(c => c.Id == updatedCharacter.Id);
+                var character = characters.FirstOrDefault(c => c.Id == updatedCharacter.Id); 
                 if (character is null)
                     throw new Exception($"Character with Id '{updatedCharacter.Id}' not found");
+
+                _mapper.Map(updatedCharacter, character);
 
                 character.Name = updatedCharacter.Name;
                 character.HitPoints = updatedCharacter.HitPoints;
