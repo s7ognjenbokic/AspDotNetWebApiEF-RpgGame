@@ -1,5 +1,7 @@
 global using udemy_dotnet_webapi.Models;
 global using udemy_dotnet_webapi.Services.CharacterService;
+global using udemy_dotnet_webapi.Dtos.Character;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

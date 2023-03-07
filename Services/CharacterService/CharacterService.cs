@@ -17,16 +17,16 @@ namespace udemy_dotnet_webapi.Services.CharacterService
             }
         };
 
-        public async Task<ServiceResponse<List<Character>>> AddNewCharacter(Character character)
+        public async Task<ServiceResponse<List<GetCharacterResponseDto>>> AddNewCharacter(AddCharacterRequestDto newCharacter)
         {   
             var serviceResponse = new ServiceResponse<List<Character>>();
-            characters.Add(character);
+            characters.Add(newCharacter);
             serviceResponse.Data = characters;
             
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<Character>>> GetAllCharacters()
+        public async Task<ServiceResponse<List<GetCharacterResponseDto>>> GetAllCharacters()
         {
             var serviceResponse = new ServiceResponse<List<Character>>();
             serviceResponse.Data = characters;
@@ -34,7 +34,7 @@ namespace udemy_dotnet_webapi.Services.CharacterService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<Character>> GetCharacterById(int id)
+        public async Task<ServiceResponse<GetCharacterResponseDto>> GetCharacterById(int id)
         {
             var serviceResponse = new ServiceResponse<Character>();
             var character = characters.FirstOrDefault(c => c.Id == id);
