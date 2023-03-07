@@ -10,5 +10,6 @@ namespace udemy_dotnet_webapi.Services.CharacterService
         Task<ServiceResponse<List<GetCharacterResponseDto>>> GetAllCharacters();
         Task<ServiceResponse<GetCharacterResponseDto>> GetCharacterById(int id);
         Task<ServiceResponse<List<GetCharacterResponseDto>>> AddNewCharacter(AddCharacterRequestDto newCharacter);
+        Task<ServiceResponse<GetCharacterResponseDto>> UpdateCharacter(UpdateCharacterRequestDto updatedCharacter);
     }
 }
