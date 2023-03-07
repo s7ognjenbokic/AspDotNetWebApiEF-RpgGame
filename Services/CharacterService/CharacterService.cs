@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace udemy_dotnet_webapi.Services.CharacterService
+{
+    public class CharacterService : ICharacterService
+    {   
+        private static List<Character> characters = new List<Character> {
+            new Character {
+                Name = "Frodo"
+            },
+            new Character {
+                Name = "Gandalf",
+                Class = RpgClass.Mage
+            }
+        };
+
+        public List<Character> AddNewCharacter(Character character)
+        {
+            characters.Add(character);
+            
+            return characters;
+        }
+
+        public List<Character> GetAllCharacters()
+        {
+            return characters;
+        }
+
+        public Character GetCharacterById(int id)
+        {
+            return characters.FirstOrDefault(c => c.Id == id);
+        }
+    }
+}
