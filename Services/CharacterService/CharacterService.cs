@@ -17,26 +17,38 @@ namespace udemy_dotnet_webapi.Services.CharacterService
             }
         };
 
-        public async Task<List<Character>> AddNewCharacter(Character character)
-        {
+        public async Task<ServiceResponse<List<Character>>> AddNewCharacter(Character character)
+        {   
+            var serviceResponse = new ServiceResponse<List<Character>>();
             characters.Add(character);
+            serviceResponse.Data = characters;
             
-            return characters;
+            return serviceResponse;
         }
 
-        public async Task<List<Character>> GetAllCharacters()
+        public async Task<ServiceResponse<List<Character>>> GetAllCharacters()
         {
-            return characters;
+            var serviceResponse = new ServiceResponse<List<Character>>();
+            serviceResponse.Data = characters;
+
+            return serviceResponse;
         }
 
-        public async Task<Character> GetCharacterById(int id)
+        public async Task<ServiceResponse<Character>> GetCharacterById(int id)
         {
+            var serviceResponse = new ServiceResponse<Character>();
             var character = characters.FirstOrDefault(c => c.Id == id);
+            
+            if (character is not null)
+            {
+                serviceResponse.Data = character;
+                return serviceResponse;
+            }
 
-            if(character is not null)
-                return character;
+            serviceResponse.Success = false;
+            serviceResponse.Message = "Character not found";
 
-            throw new BadHttpRequestException("Character not found");
+            return serviceResponse;
         }
     }
 }
