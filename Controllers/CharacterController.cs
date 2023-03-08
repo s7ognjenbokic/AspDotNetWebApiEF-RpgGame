@@ -25,8 +25,12 @@ namespace udemy_dotnet_webapi.Controllers
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceResponse<GetCharacterResponseDto>>> GetSingle(int id)
-        {
-            return Ok(await _characterService.GetCharacterById(id));
+        {   
+            var response = await _characterService.GetCharacterById(id);
+            if (response.Data is null)
+                return NotFound(response);
+
+            return Ok();
         }
 
         [HttpPost]
@@ -40,9 +44,7 @@ namespace udemy_dotnet_webapi.Controllers
         {   
             var response = await _characterService.UpdateCharacter(updatedCharacter);
             if (response.Data is null)
-            {
                 return NotFound(response);
-            }
 
             return Ok(response);
         }
@@ -52,9 +54,7 @@ namespace udemy_dotnet_webapi.Controllers
         {
             var response = await _characterService.DeleteCharacter(id);
             if (response.Data is null)
-            {
                 return NotFound(response);
-            }
 
             return Ok(response);
         }
