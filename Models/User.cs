@@ -11,5 +11,6 @@ namespace udemy_dotnet_webapi.Models
         public string UserName { get; set; } = string.Empty;
         public byte[] PasswordHash { get; set; } = new byte[0];
         public byte[] PasswordSalt { get; set; } = new byte[0];
+        public List<Character>? Characters { get; set; }
     }
 }
