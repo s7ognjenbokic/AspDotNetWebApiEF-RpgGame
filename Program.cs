@@ -1,6 +1,7 @@
 global using udemy_dotnet_webapi.Models;
 global using udemy_dotnet_webapi.Services.CharacterService;
 global using udemy_dotnet_webapi.Dtos.Character;
+global using udemy_dotnet_webapi.Dtos.User;
 global using AutoMapper;
 global using Microsoft.EntityFrameworkCore;
 global using udemy_dotnet_webapi.Data;
@@ -19,8 +20,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<ICharacterService, CharacterService>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
-var app = builder.Build();
+
+var app = builder.Build(); 
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
