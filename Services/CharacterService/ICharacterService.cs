@@ -7,7 +7,7 @@ namespace udemy_dotnet_webapi.Services.CharacterService
 {
     public interface ICharacterService
     {
-        Task<ServiceResponse<List<GetCharacterResponseDto>>> GetAllCharacters();
+        Task<ServiceResponse<List<GetCharacterResponseDto>>> GetAllCharacters(int userId);
         Task<ServiceResponse<GetCharacterResponseDto>> GetCharacterById(int id);
         Task<ServiceResponse<List<GetCharacterResponseDto>>> AddNewCharacter(AddCharacterRequestDto newCharacter);
         Task<ServiceResponse<GetCharacterResponseDto>> UpdateCharacter(UpdateCharacterRequestDto updatedCharacter);

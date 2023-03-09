@@ -54,12 +54,11 @@ namespace udemy_dotnet_webapi.Services.CharacterService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<GetCharacterResponseDto>>> GetAllCharacters()
+        public async Task<ServiceResponse<List<GetCharacterResponseDto>>> GetAllCharacters(int userId)
         {
             var serviceResponse = new ServiceResponse<List<GetCharacterResponseDto>>();
-
-            serviceResponse.Data = 
-                await _context.Characters.Select(c => _mapper.Map<GetCharacterResponseDto>(c)).ToListAsync();
+            var dbCharacters = await _context.Characters.Where(c => c.User!.Id == userId).ToListAsync();
+            serviceResponse.Data = dbCharacters.Select(c => _mapper.Map<GetCharacterResponseDto>(c)).ToList();
 
             return serviceResponse;
         }
