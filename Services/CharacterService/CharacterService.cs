@@ -25,12 +25,16 @@ namespace udemy_dotnet_webapi.Services.CharacterService
         {   
             var serviceResponse = new ServiceResponse<List<GetCharacterResponseDto>>();
             var character = _mapper.Map<Character>(newCharacter);
+            character.User = await _context.Users.FirstOrDefaultAsync(u => u.Id == GetUserId());
             
             _context.Characters.Add(character);
             await _context.SaveChangesAsync();
 
             serviceResponse.Data = 
-                await _context.Characters.Select(c => _mapper.Map<GetCharacterResponseDto>(c)).ToListAsync();
+                await _context.Characters
+                    .Where(c => c.User!.Id == GetUserId())
+                    .Select(c => _mapper.Map<GetCharacterResponseDto>(c))
+                    .ToListAsync();
             
             return serviceResponse;
         }
