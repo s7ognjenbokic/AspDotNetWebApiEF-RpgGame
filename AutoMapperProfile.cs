@@ -11,7 +11,6 @@ namespace udemy_dotnet_webapi
         {
             CreateMap<Character, GetCharacterResponseDto>();
             CreateMap<AddCharacterRequestDto, Character>();
-            CreateMap<UpdateCharacterRequestDto, Character>();
         }
     }
 }
