@@ -44,15 +44,17 @@ namespace udemy_dotnet_webapi.Services.CharacterService
             var serviceResponse = new ServiceResponse<List<GetCharacterResponseDto>>();
 
             try {
-                var character = await _context.Characters.FirstOrDefaultAsync(c => c.Id == id); 
+                var character = await _context.Characters.FirstOrDefaultAsync(c => c.Id == id && c.User!.Id == GetUserId()); 
                 if (character is null)
-                    throw new Exception($"Character with Id '{id}' not found");
+                    throw new Exception($"Character with Id '{id}' and User Id '{GetUserId()}' not found");
 
                 _context.Characters.Remove(character);
                 await _context.SaveChangesAsync();
                 
                 serviceResponse.Data =
-                    await _context.Characters.Select(c => _mapper.Map<GetCharacterResponseDto>(c)).ToListAsync();
+                    await _context.Characters
+                        .Where(c => c.User!.Id == GetUserId())
+                        .Select(c => _mapper.Map<GetCharacterResponseDto>(c)).ToListAsync();
             }
             catch (Exception ex)
             {
