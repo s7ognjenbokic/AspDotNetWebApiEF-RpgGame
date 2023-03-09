@@ -32,7 +32,7 @@ namespace udemy_dotnet_webapi.Controllers
             if (response.Data is null)
                 return NotFound(response);
 
-            return Ok();
+            return Ok(response);
         }
 
         [HttpPost]
