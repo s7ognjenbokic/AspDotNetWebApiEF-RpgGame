@@ -1,6 +1,7 @@
 global using udemy_dotnet_webapi.Models;
 global using udemy_dotnet_webapi.Services.CharacterService;
 global using udemy_dotnet_webapi.Services.WeaponService;
+global using udemy_dotnet_webapi.Services.FightService;
 global using udemy_dotnet_webapi.Dtos.Character;
 global using udemy_dotnet_webapi.Dtos.User;
 global using AutoMapper;
@@ -36,6 +37,8 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<ICharacterService, CharacterService>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IWeaponService, WeaponService>();
+builder.Services.AddScoped<IFightService, FightService>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options => {
         options.TokenValidationParameters = new TokenValidationParameters{
