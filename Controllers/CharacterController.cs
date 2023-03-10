@@ -60,5 +60,16 @@ namespace udemy_dotnet_webapi.Controllers
 
             return Ok(response);
         }
+
+        [HttpPost("Skill")]
+        public async Task<ActionResult<ServiceResponse<GetCharacterResponseDto>>> AddCharacterSkill(AddCharacterSkillRequestDto newCharacterSkill)
+        {
+            var response = await _characterService.AddCharacterSkill(newCharacterSkill);
+            if (response.Data is null)
+                return NotFound(response);
+
+            return Ok(response);
+        }
+
     }
 }
