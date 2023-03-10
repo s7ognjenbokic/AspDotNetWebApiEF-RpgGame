@@ -23,5 +23,11 @@ namespace udemy_dotnet_webapi.Controllers
         {
             return Ok(await _fightService.WeaponAttack(request));
         }
+
+        [HttpPost("Skill")]
+        public async Task<ActionResult<ServiceResponse<AttackResultDto>>> SkillAttack(SkillAttackRequestDto request)
+        {
+            return Ok(await _fightService.SkillAttack(request));
+        }
     }
 }

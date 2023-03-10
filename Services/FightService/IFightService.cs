@@ -9,5 +9,6 @@ namespace udemy_dotnet_webapi.Services.FightService
     public interface IFightService
     {
         Task<ServiceResponse<AttackResultDto>> WeaponAttack(WeaponAttackRequestDto request);
+        Task<ServiceResponse<AttackResultDto>> SkillAttack(SkillAttackRequestDto request);
     }
 }
