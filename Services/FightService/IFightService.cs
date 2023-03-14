@@ -11,5 +11,6 @@ namespace udemy_dotnet_webapi.Services.FightService
         Task<ServiceResponse<AttackResultDto>> WeaponAttack(WeaponAttackRequestDto request);
         Task<ServiceResponse<AttackResultDto>> SkillAttack(SkillAttackRequestDto request);
         Task<ServiceResponse<FightResultDto>> Fight(FightRequestDto request);
+        Task<ServiceResponse<List<HighscoreDto>>> GetHighscore();
     }
 }
